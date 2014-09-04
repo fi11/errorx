@@ -1,0 +1,27 @@
+{
+  "name": "errorx",
+  "version": "0.0.1",
+  "description": "Simple base error class",
+  "main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fi11/errorx.git"
+  },
+  "keywords": [
+    "error",
+    "obx"
+  ],
+  "bugs": {
+    "url": "https://github.com/fi11/errorx/issues"
+  },
+  "homepage": "https://github.com/fi11/errorx",
+  "author": "Pavel Silin",
+  "license": "MIT",
+  "dependencies": {
+    "obx": "~0.0.2"
+  },
+  "devDependencies": {
+    "mocha": "1.21.4",
+    "chai": "1.9.1"
+  }
+}
