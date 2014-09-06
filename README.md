@@ -41,14 +41,15 @@ try {
 // Capture another error
 
 var err = new Error('ups');
+
 throw new SomeError(err, 'Foo %s', 'bar');
 
 /*
 throw new SomeError(err, 'Foo %s', 'bar');
       ^
 SomeError: Foo bar [Error: ups]
+    at Object.<anonymous> (/foo/bar/baz/index.js:7:7)
     at Object.<anonymous> (/foo/bar/baz/index.js:5:7)
-    at Object.<anonymous> (/foo/bar/baz/index.js:6:7)
     at Module._compile (module.js:449:26)
     at Object.Module._extensions..js (module.js:467:10)
     at Module.load (module.js:349:32)
