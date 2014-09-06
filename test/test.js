@@ -16,8 +16,17 @@ describe('ErrorX', function() {
     });
     
     it('Should right name', function() {
-        var E = Err.create('SomeError');
-        expect((new E).name).to.eql('SomeError');
+        var E1 = Err.create('SomeError');
+        var E2 = Err.create(function SomeError() {
+            Err.apply(this, arguments);
+        });
+        var E3 = Err.create(function SomeError() {
+            Err.apply(this, arguments);
+        });
+
+        expect((new E1).name).to.eql('SomeError');
+        expect((new E2).name).to.eql('SomeError');
+        expect((new E2(new Error)).name).to.eql('SomeError');
     });
 
     it('Should have default name Error', function() {
@@ -26,5 +35,27 @@ describe('ErrorX', function() {
         });
 
         expect((new E).name).to.eql('Error');
+    });
+
+    it('Should have right message with both error', function() {
+        var E = Err.create('SomeError');
+        var err = new Error('ups');
+
+        expect((new E(err, 'foo %s', 'bar')).message).to.eql('foo bar [Error: ups]');
+    });
+
+    it('Should have error stack of capture error', function() {
+        var E = Err.create('SomeError');
+        var err = new Error('ups');
+
+        var stack = err.stack.split('\n');
+        stack.splice(0, 1);
+
+        var newError  = new E(err);
+
+        var newErrorStack = newError.stack.split('\n');
+        newErrorStack.splice(0, 2);
+
+        expect(newErrorStack).to.eql(stack);
     });
 });
